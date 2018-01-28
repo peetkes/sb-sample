@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.List;
 
 @EnableBatchProcessing
-public class YourTwoStepJobConfig {
+public class TwoStepJobConfig {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 

@@ -27,7 +27,7 @@ import org.springframework.context.annotation.PropertySource;
 import java.util.UUID;
 
 /**
- * YourJobConfig.java - a Spring Batch configuration template that demonstrates ingesting data into MarkLogic.  This
+ * OneStepJobConfig.java - a Spring Batch configuration template that demonstrates ingesting data into MarkLogic.  This
  * job specification uses the MarkLogicBatchConfiguration that utilizes a MarkLogic implementation of a JobRepository.
  *
  * @author Scott Stafford
@@ -43,12 +43,12 @@ import java.util.UUID;
         com.marklogic.spring.batch.config.MarkLogicBatchConfiguration.class,
         com.marklogic.spring.batch.config.MarkLogicConfiguration.class})
 @PropertySource("classpath:job.properties")
-public class YourJobConfig {
+public class OneStepJobConfig {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     // This is the bean label for the name of your Job.  Pass this label into the job_id parameter
     // when using the CommandLineJobRunner
-    private final String JOB_NAME = "yourJob";
+    private final String JOB_NAME = "oneStepJob";
 
     /**
      * The JobBuilderFactory and Step parameters are injected via the EnableBatchProcessing annotation.
@@ -63,7 +63,7 @@ public class YourJobConfig {
             @Override
             public void beforeJob(JobExecution jobExecution) {
                 logger.info("BEFORE JOB");
-                jobExecution.getExecutionContext().putString("random", "yourJob123");
+                jobExecution.getExecutionContext().putString("random", "oneStepJob123");
             }
 
             @Override
@@ -98,7 +98,7 @@ public class YourJobConfig {
     public Step step(
             StepBuilderFactory stepBuilderFactory,
             DatabaseClientProvider databaseClientProvider,
-            @Value("#{jobParameters['output_collections'] ?: 'yourJob'}") String[] collections,
+            @Value("#{jobParameters['output_collections'] ?: 'oneStepJob'}") String[] collections,
             @Value("#{jobParameters['chunk_size'] ?: 20}") int chunkSize) {
 
         DatabaseClient databaseClient = databaseClientProvider.getDatabaseClient();

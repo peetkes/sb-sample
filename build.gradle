@@ -37,23 +37,23 @@ repositories {
     jcenter()
 }
 
-task runYourJob(type: JavaExec) {
+task runOneStepJob(type: JavaExec) {
     main = 'com.marklogic.spring.batch.core.launch.support.CommandLineJobRunner'
     description = "Run the yourJob Config program"
     classpath = sourceSets.main.runtimeClasspath
-    args = ["--job_path", "nl.marklogic.sb.YourJobConfig",
-            "--job_id", "yourJob",
-            "--output_collections", "yourJob",
+    args = ["--job_path", "nl.marklogic.sb.OneStepJobConfig",
+            "--job_id", "oneStepJob",
+            "--output_collections", "oneStepJob",
             "--chunk_size", "50",
             "--thread_count", "1",
             "--next"]
 }
 
-task runYourTwoStepJob(type: JavaExec) {
+task runTwoStepJob(type: JavaExec) {
     main = 'com.marklogic.spring.batch.core.launch.support.CommandLineJobRunner'
     description = "Run the twoStep Config program"
     classpath = sourceSets.main.runtimeClasspath
-    args = ["--job_path", "nl.marklogic.sb.YourTwoStepJobConfig",
+    args = ["--job_path", "nl.marklogic.sb.TwoStepJobConfig",
             "--job_id", "twoStepJob",
             "--output_collections", "twoStepJob",
             "--chunk_size", "50",
@@ -61,7 +61,7 @@ task runYourTwoStepJob(type: JavaExec) {
             "--next"]
 }
 
-task migrate(type: JavaExec) {
+task runMigrationJob(type: JavaExec) {
     main = 'com.marklogic.spring.batch.core.launch.support.CommandLineJobRunner'
     description = "Run the migration program"
     classpath = sourceSets.main.runtimeClasspath
